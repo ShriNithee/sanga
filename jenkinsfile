@@ -1,0 +1,27 @@
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                bat 'javac Main.java'
+            }
+        }
+
+        stage('Execute') {
+            steps {
+                bat 'echo 12321 | java Main'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Palindrome CI Pipeline Successful!'
+        }
+        failure {
+            echo 'Palindrome CI Pipeline Failed!'
+        }
+    }
+}
